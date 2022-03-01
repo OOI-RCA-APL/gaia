@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "gaia"
+version = "0.1.0"
+description = "A set of libraries and utilities for web servers at APL"
+authors = ["Jake Ploskey <jploskey@uw.edu>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aiofiles = "0.7.0"
+aiohttp = "3.7.4"
+aiosmtplib = "1.1.6"
+asyncpg = "0.23.0"
+bcrypt = "3.2.0"
+circus = "0.17.1"
+email-validator = "1.1.3"
+fastapi = "0.67.0"
+httptools = "0.2.0"
+passlib = "1.7.4"
+poethepoet = "0.13.1"
+python-dotenv = "0.19.2"
+python-jose = "3.3.0"
+python-multipart = "0.0.5"
+sqlalchemy = "1.4.22"
+sqlalchemy2-stubs = "0.0.2-alpha.18"
+uvicorn = "0.14.0"
+uvloop = "0.15.3"
+
+[tool.poetry.dev-dependencies]
+black = "22.1.0"
+flake8 = "3.9.2"
+isort = "5.10.1"
+mypy = "0.931"
+
+[tool.poetry.scripts]
+task = "poethepoet:main"
+
+[tool.poe.tasks]
+format = { shell = "isort . && black ." }
+lint = { shell = "isort . --check --diff && black --check . && flake8 . && mypy ." }
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
