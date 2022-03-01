@@ -1,7 +1,7 @@
 from typing import Dict, Generic, Optional, TypeVar, Union, cast
 
 from fastapi.responses import JSONResponse
-from pydantic.main import BaseModel
+from pydantic import BaseModel
 from starlette.background import BackgroundTask
 
 T = TypeVar("T")

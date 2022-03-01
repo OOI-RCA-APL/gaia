@@ -3,7 +3,7 @@ from logging import Logger
 from logging.config import dictConfig
 from typing import Any, Dict, Optional
 
-from pydantic.main import BaseModel
+from pydantic import BaseModel
 
 
 class LogConfig(BaseModel):
