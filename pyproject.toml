@@ -3,8 +3,6 @@ name = "gaia"
 version = "0.1.0"
 description = "A set of libraries and utilities for web servers at APL"
 authors = ["Jake Ploskey <jploskey@uw.edu>"]
-# include = ["gaia/py.typed"]
-packages = [{ include = "gaia" }]
 include = ["gaia/py.typed"]
 
 [tool.poetry.dependencies]
@@ -23,16 +21,15 @@ python-dotenv = "0.19.2"
 python-jose = "3.3.0"
 python-multipart = "0.0.5"
 sqlalchemy = "1.4.22"
-sqlalchemy2-stubs = "0.0.2-alpha.20"
 uvicorn = "0.14.0"
 uvloop = "0.15.3"
 
 [tool.poetry.dev-dependencies]
-black = "22.1.0"
+black = "21.7b0"
 flake8 = "3.9.2"
-isort = "5.10.1"
-mypy = "0.931"
-poethepoet = "0.13.1"
+isort = "5.8.0"
+mypy = "0.910"
+poethepoet = "0.10.0"
 
 [tool.poetry.scripts]
 task = "poethepoet:main"
