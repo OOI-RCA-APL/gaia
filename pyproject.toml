@@ -20,7 +20,7 @@ python-dotenv = "0.19.2"
 python-jose = "3.3.0"
 python-multipart = "0.0.5"
 sqlalchemy = "1.4.22"
-sqlalchemy2-stubs = "^0.0.2-alpha.20"
+sqlalchemy2-stubs = "0.0.2-alpha.20"
 uvicorn = "0.14.0"
 uvloop = "0.15.3"
 
