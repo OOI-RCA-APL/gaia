@@ -1,8 +1,8 @@
-from pathlib import Path
-from typing import Any, Optional, Union
+from typing import Any, Optional
 
 from pydantic import BaseSettings as PydanticBaseSettings
 from pydantic import ValidationError
+from pydantic.typing import StrPath
 
 
 class BaseSettings(PydanticBaseSettings):
@@ -12,14 +12,14 @@ class BaseSettings(PydanticBaseSettings):
 
     def __init__(
         __pydantic_self__,
-        _env_file: Union[Path, str, None] = None,
+        _env_file: Optional[StrPath] = None,
         _env_file_encoding: Optional[str] = None,
-        _secrets_dir: Union[Path, str, None] = None,
+        _secrets_dir: Optional[StrPath] = None,
         **values: Any,
     ) -> None:
         try:
             super().__init__(
-                _env_file=_env_file,  # type: ignore
+                _env_file=_env_file,
                 _env_file_encoding=_env_file_encoding,
                 _secrets_dir=_secrets_dir,
                 **values,
