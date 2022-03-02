@@ -3,6 +3,7 @@ name = "gaia"
 version = "0.1.0"
 description = "A set of libraries and utilities for web servers at APL"
 authors = ["Jake Ploskey <jploskey@uw.edu>"]
+include = ["gaia/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
