@@ -725,7 +725,7 @@ class Session:
         if options is not None:
             query = query.options(*options)
 
-        return (await self.inner.execute(query.limit(1))).scalars().first()
+        return cast(Optional[T], (await self.inner.execute(query.limit(1))).scalars().first())
 
     async def all(
         self,
@@ -768,7 +768,7 @@ class Session:
         if options is not None:
             query = query.options(*options)
 
-        return (await self.inner.execute(query)).scalars().all()
+        return cast(List[T], (await self.inner.execute(query)).scalars().all())
 
     async def refresh(self, instance: T, attributes: Optional[Iterable[str]] = None) -> None:
         """
