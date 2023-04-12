@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from email.message import EmailMessage
-from typing import Any, Dict, List, Sequence, Tuple, Union, cast
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Union, cast
 
 from aiosmtplib import SMTPResponse
 from email_validator import validate_email
@@ -42,8 +42,9 @@ class SMTPEmailManager(EmailManager):
         host: str,
         port: int,
         use_starttls: bool = False,
-        address: str,
-        password: str,
+        address: Optional[str] = None,
+        username: Optional[str] = None,
+        password: Optional[str] = None,
     ) -> None:
         """
         Create a new SMTP manager with the provided settings.
@@ -51,7 +52,8 @@ class SMTPEmailManager(EmailManager):
         :param host: The hostname of the SMTP server to connect to.
         :param port: The port of the SMTP server to connect to.
         :param use_starttls: If `True` use STARTTLS to send emails.
-        :param address: The email address to sign in as and send emails from.
+        :param address: The email address to send emails from.
+        :param username: The username to sign into the SMTP server with.
         :param password: The password to sign into the SMTP server with.
         """
         super().__init__()
@@ -59,6 +61,7 @@ class SMTPEmailManager(EmailManager):
         self._port = port
         self._use_starttls = use_starttls
         self._address = address
+        self._username = username
         self._password = password
 
     async def send(
@@ -79,7 +82,8 @@ class SMTPEmailManager(EmailManager):
         message.set_content(body, subtype=subtype)
 
         message["To"] = ",".join(recipients)
-        message["From"] = self._address
+        if self._address is not None:
+            message["From"] = self._address
         message["Subject"] = subject
 
         errors, log = await aiosmtplib.send(
@@ -88,7 +92,7 @@ class SMTPEmailManager(EmailManager):
             recipients=recipients,
             hostname=self._host,
             port=self._port,
-            username=self._address,
+            username=self._username,
             password=self._password,
             start_tls=self._use_starttls,
         )
